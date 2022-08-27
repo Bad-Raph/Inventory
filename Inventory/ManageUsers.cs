@@ -18,16 +18,18 @@ namespace Inventory
             InitializeComponent();
         }
         SqlConnection Con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Raphael Baddoo\Documents\Database.mdf"";Integrated Security=True;Connect Timeout=30");
-        private void label3_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        private void label3_Click(object sender, EventArgs e) => Application.Exit();
         void populate()
         {
             try
             {
                 Con.Open();
-                string Myquery = "select"  from UserTb1; 
+                string Myquery = "select * from UserTb1";
+                SqlDataAdapter da = new SqlDataAdapter(Myquery, Con);
+                SqlCommandBuilder builder = new SqlCommandBuilder(da);
+                var ds = new DataSet();
+                da.Fill(ds);
+                UserGV.DataSource=ds.Tables[0];
                 Con.Close();
             }
             catch
@@ -41,10 +43,13 @@ namespace Inventory
             try 
             {
                 Con.Open();
-                SqlCommand cmd = new SqlCommand("insert into UserTb1 values('" + unameTb.Text + "','" + FnameTb.Text + "','" + passwordTb.Text + "','" + phoneTb.Text + "')", Con);
+                SqlCommand cmd = new SqlCommand("insert into UserTb1 values('" + unameTb.Text + "','" + FnameTb.Text + "','" + password.Text + "','" + phoneTb.Text + "')", Con);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("User Successfully Added");
+                
                 Con.Close();
+                populate();
+
             }
             catch
             {
@@ -52,5 +57,11 @@ namespace Inventory
             }
 
         }
+
+        private void ManageUsers_Load(object sender, EventArgs e)
+        {
+            populate();
+        }
     }
 }
+
