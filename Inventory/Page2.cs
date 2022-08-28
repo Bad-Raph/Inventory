@@ -16,5 +16,12 @@ namespace Inventory
         {
             InitializeComponent();
         }
+
+        private void bunifuButton1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AdminSign adminSign = new AdminSign();
+            adminSign.Show();
+        }
     }
 }

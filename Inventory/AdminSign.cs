@@ -16,5 +16,19 @@ namespace Inventory
         {
             InitializeComponent();
         }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AdminLogin adminLogin = new AdminLogin();
+            adminLogin.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ProductCategories  productCategories = new ProductCategories();
+            productCategories.Show();
+        }
     }
 }
