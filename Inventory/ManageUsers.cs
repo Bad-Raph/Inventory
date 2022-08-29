@@ -83,10 +83,12 @@ namespace Inventory
 
         private void UserGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            DataGridViewRow row = this.UserGV.Rows[e.RowIndex];
             unameTb.Text = UserGV.SelectedRows[0].Cells[0].Value.ToString();
             FnameTb.Text = UserGV.SelectedRows[0].Cells[1].Value.ToString();    
             password.Text = UserGV.SelectedRows[0].Cells[2].Value.ToString();
             phoneTb.Text = UserGV.SelectedRows[0].Cells[3].Value.ToString();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -107,6 +109,27 @@ namespace Inventory
 
             }
 
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ProductCategories productCategories = new ProductCategories();
+            productCategories.Show();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ManageUsers manageUsers = new ManageUsers();
+            manageUsers.Show();
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Page2 page2 = new Page2();
+            page2.Show();
         }
     }
 }

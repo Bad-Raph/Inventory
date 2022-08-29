@@ -79,6 +79,8 @@ namespace Inventory
             {
 
             }
+                
+     
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -90,7 +92,7 @@ namespace Inventory
         {
             Con.Close();
             Con.Open();
-            SqlCommand cmd = new SqlCommand("update ProductTb1 set ProdName='" + ProductNameTb .Text + "',ProdQty='" + ProductQtyTb .Text + "',ProdPrice='" + ProductPriceTb.Text + "',ProdDesc='" + ProductDescTb.Text + "',ProdCat='" + CatCombo.SelectedValue.ToString() + "' where ProdtId='" + ProductIdTb.Text + "'", Con);
+            SqlCommand cmd = new SqlCommand("update ProductTb1 set Name='" + ProductNameTb .Text + "',Qty='" + ProductQtyTb .Text + "',Price='" + ProductPriceTb.Text + "',Desc='" + ProductDescTb.Text + "',Category='" + CatCombo.SelectedValue.ToString() + "' where Id='" + ProductIdTb.Text + "'", Con);
             cmd.ExecuteNonQuery();
             MessageBox.Show("Category Successfully Updated");
 
@@ -115,6 +117,42 @@ namespace Inventory
                 Con.Close();
                 populate();
             }
+        }
+
+        private void CatCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ProductGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = this.ProductGV.Rows[e.RowIndex];
+            ProductIdTb.Text = row.Cells[0].Value.ToString();
+            ProductNameTb.Text = row.Cells[1].Value.ToString();
+            ProductQtyTb.Text = row.Cells[2].Value.ToString();
+            ProductPriceTb.Text = row.Cells[3].Value.ToString();    
+            ProductDescTb.Text = row.Cells[4].Value.ToString();
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ProductCategories productCategories = new ProductCategories();
+            productCategories.Show();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ManageUsers manageUsers = new ManageUsers();
+            manageUsers.Show();
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Page2 page2 = new Page2();
+            page2.Show();
         }
     }
 }

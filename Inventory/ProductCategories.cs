@@ -147,5 +147,10 @@ namespace Inventory
             Page2 page2 = new Page2();
             page2.Show();
         }
+
+        private void CatIdTb_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
